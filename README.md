@@ -299,7 +299,7 @@ stateDiagram-v2
 ### 1️⃣ Clone & install
 
 ```bash
-git clone <your-repo-url> AutoShorts-Engine
+git clone <https://github.com/amjdcodes/> AutoShorts-Engine
 cd AutoShorts-Engine
 
 python -m venv venv
