@@ -1,0 +1,18 @@
+# Credentials & Config
+.env
+*.env
+
+# Database
+*.db
+*.sqlite3
+
+# Python & Environment
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Media & Temp Files
+temp/
+output/
+

@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  brambet:
+    build: .
+    expose:
+      - "8000"
+    volumes:
+      - ./temp:/app/temp
+      - ./output:/app/output
+      - ./.env:/app/.env:ro
+      - ./brambet.db:/app/brambet.db
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - internal
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - brambet
+    restart: unless-stopped
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+    internal: false
